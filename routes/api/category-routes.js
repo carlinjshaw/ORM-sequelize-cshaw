@@ -19,19 +19,39 @@ const category = await Category.findAll({
     id: req.params.id
   }
 })
-  
 });
 
 router.post('/', (req, res) => {
   // create a new category
+  Category.create({
+    category_name: req.body
+  })
+  .then(category => {
+    res.json(category)
+  })
 });
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
+  Category.update({
+    category_name: req.body
+  },
+  {
+  where: {
+    id: req.params.id
+  }
+  })
 });
 
 router.delete('/:id', (req, res) => {
   // delete a category by its `id` value
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(category =>{
+    res.json(category)
+  })
 });
 
 module.exports = router;
