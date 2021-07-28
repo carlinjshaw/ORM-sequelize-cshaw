@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
       id: req.params.id
     }
   })
-
+res.json(tags)
 });
 
 router.post('/', (req, res) => {

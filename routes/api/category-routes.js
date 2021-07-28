@@ -19,6 +19,7 @@ const category = await Category.findAll({
     id: req.params.id
   }
 })
+res.json(category)
 });
 
 router.post('/', (req, res) => {
@@ -40,6 +41,8 @@ router.put('/:id', (req, res) => {
   where: {
     id: req.params.id
   }
+  }).then(category =>{
+    res.json(category)
   })
 });
 
