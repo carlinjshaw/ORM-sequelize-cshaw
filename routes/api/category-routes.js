@@ -4,14 +4,14 @@ const { Op } = require('sequelize');
 
 // The `/api/categories` endpoint
 
-router.get('/categories', async (req, res) => {
+router.get('/', async (req, res) => {
   // find all categories
   // be sure to include its associated Products
   const categories = await Category.findAll()
   res.json(categories)
 });
 
-router.get('/api/categories/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   // be sure to include its associated Products
 const category = await Category.findAll({
@@ -24,7 +24,7 @@ const category = await Category.findAll({
 router.post('/', (req, res) => {
   // create a new category
   Category.create({
-    category_name: req.body
+    category_name: req.body.category_name
   })
   .then(category => {
     res.json(category)
@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
   Category.update({
-    category_name: req.body
+    category_name: req.body.category_name
   },
   {
   where: {
